@@ -1,0 +1,24 @@
+/* Der gleiche Stil wie die Navbar */
+.navbar,
+.footer {
+    background-color: #f2f2f2;
+    overflow: hidden;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.navbar a,
+.footer a {
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.navbar a:hover,
+.footer a:hover {
+    background-color: #ddd;
+    color: black;
+}

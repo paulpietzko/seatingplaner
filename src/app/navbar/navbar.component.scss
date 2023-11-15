@@ -1,0 +1,25 @@
+.navbar {
+    background-color: #f2f2f2;
+    /* Light grey background */
+    overflow: hidden;
+    display: flex;
+    justify-content: flex-end;
+    /* Aligns links to the right */
+}
+
+.navbar a {
+    float: left;
+    display: block;
+    color: black;
+    /* Black text color */
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the color of links on hover */
+.navbar a:hover {
+    background-color: #ddd;
+    /* Darker grey on hover */
+    color: black;
+}
