@@ -1,24 +1,33 @@
-/* Der gleiche Stil wie die Navbar */
-.navbar,
 .footer {
-    background-color: #f2f2f2;
-    overflow: hidden;
+    color: #fff;
+    padding: 2rem;
     display: flex;
-    justify-content: flex-end;
-}
-
-.navbar a,
-.footer a {
-    float: left;
-    display: block;
-    color: black;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-.navbar a:hover,
-.footer a:hover {
-    background-color: #ddd;
-    color: black;
-}
+    justify-content: space-between;
+    background: #2c3e50;
+  
+    .footer-section {
+      h5 {
+        margin-bottom: 1rem;
+      }
+  
+      ul {
+        list-style: none;
+        padding: 0;
+  
+        li {
+          margin-bottom: 0.5rem;
+  
+          a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+  
+            &:hover {
+              color: #3498db;
+            }
+          }
+        }
+      }
+    }
+  }
+  

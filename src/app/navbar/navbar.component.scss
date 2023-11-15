@@ -1,25 +1,46 @@
 .navbar {
-    background-color: #f2f2f2;
-    /* Light grey background */
     overflow: hidden;
     display: flex;
-    justify-content: flex-end;
-    /* Aligns links to the right */
-}
-
-.navbar a {
-    float: left;
-    display: block;
-    color: black;
-    /* Black text color */
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-/* Change the color of links on hover */
-.navbar a:hover {
-    background-color: #ddd;
-    /* Darker grey on hover */
-    color: black;
-}
+    justify-content: space-between;
+    padding: 1rem 3vh;
+  
+    .logo {
+      margin-top: 7px;
+      width: 2rem;
+    }
+  
+    .right {
+      display: flex;
+  
+      a {
+        width: 7rem;
+        float: none;
+        display: block;
+        color: black;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        transition: 0.3s ease-in-out;
+  
+        &:first-child {
+          border-top-left-radius: 10px;
+          border-bottom-left-radius: 10px;
+        }
+  
+        &:last-child {
+          border-top-right-radius: 5px;
+          border-bottom-right-radius: 5px;
+        }
+  
+        &:not(:last-child) {
+          border-right: 1px solid black;
+        }
+  
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.050);
+          color: rgb(69, 130, 195);
+        }
+      }
+    }
+  }
+  
