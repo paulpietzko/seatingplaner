@@ -15,6 +15,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { HomeComponent } from './home/home.component';
 import { TutorialComponent } from './tutorial/tutorial.component';
 import { GeneratorComponent } from './generator/generator.component';
+
 @NgModule({
   declarations: [
     AppComponent,

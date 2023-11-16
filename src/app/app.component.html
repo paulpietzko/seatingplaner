@@ -1,7 +1,9 @@
-<app-navbar></app-navbar>
-<div [ngSwitch]="selectedTab">
-  <app-home *ngSwitchCase="0"></app-home>
-  <app-generator *ngSwitchCase="1"></app-generator>
-  <app-tutorial *ngSwitchCase="2"></app-tutorial>
+<div class="page-container">
+  <app-navbar></app-navbar>
+  <div class="content" [@fadeAnimation]="selectedTab.toString()">
+    <app-home *ngIf="selectedTab === 0"></app-home>
+    <app-generator *ngIf="selectedTab === 1"></app-generator>
+    <app-tutorial *ngIf="selectedTab === 2"></app-tutorial>
+  </div>
+  <app-footer></app-footer>
 </div>
-<app-footer></app-footer>
