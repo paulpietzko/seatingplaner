@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
-<mat-tab-group [selectedIndex]="selectedTab">
-  <mat-tab label="Home"><app-home></app-home></mat-tab>
-  <mat-tab label="Generator"><!-- Generator Content --></mat-tab>
-  <mat-tab label="Tutorial"><!-- Tutorial Content --></mat-tab>
-</mat-tab-group>
+<div [ngSwitch]="selectedTab">
+  <app-home *ngSwitchCase="0"></app-home>
+  <app-generator *ngSwitchCase="1"></app-generator>
+  <app-tutorial *ngSwitchCase="2"></app-tutorial>
+</div>
 <app-footer></app-footer>
