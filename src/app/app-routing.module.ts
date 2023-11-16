@@ -7,6 +7,7 @@ import { DocumentationComponent } from './documentation/documentation.component'
 import { ClassDetailComponent } from './class-detail/class-detail.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'generator', component: GeneratorComponent },
   { path: 'tutorial', component: TutorialComponent },
