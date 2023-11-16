@@ -15,6 +15,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { HomeComponent } from './home/home.component';
 import { TutorialComponent } from './tutorial/tutorial.component';
 import { GeneratorComponent } from './generator/generator.component';
+import { ImpressumComponent } from './impressum/impressum.component';
+import { ClassDetailComponent } from './class-detail/class-detail.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { GeneratorComponent } from './generator/generator.component';
     DocumentationComponent,
     HomeComponent,
     TutorialComponent,
-    GeneratorComponent
+    GeneratorComponent,
+    ImpressumComponent,
+    ClassDetailComponent
   ],
   imports: [
     BrowserModule,

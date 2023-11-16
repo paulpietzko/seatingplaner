@@ -1,0 +1,11 @@
+<!-- class-detail.component.html -->
+<div *ngIf="classDetails; else noClassDetails">
+    <h2>{{ classDetails.name }}</h2>
+    <p>Anzahl Schüler: {{ classDetails.studentsCount }}</p>
+    <p>Erstellungsdatum: {{ classDetails.creationDate | date }}</p>
+    <!-- Weitere Details der Klasse hier -->
+</div>
+
+<ng-template #noClassDetails>
+    <p>Keine Details für diese Klasse gefunden.</p>
+</ng-template>

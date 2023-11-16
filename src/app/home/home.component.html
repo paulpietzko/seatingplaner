@@ -3,9 +3,8 @@
     <input matInput [(ngModel)]="newClassName">
 </mat-form-field>
 <button mat-raised-button color="primary" (click)="createClass()">Add Class</button>
-<ng-container *ngIf="(classes$ | async)?.length else noClasses">
+<ng-container *ngIf="classes.length else noClasses">
     <mat-table [dataSource]="classes">
-
         <!-- Spalten-Definitionen -->
         <ng-container matColumnDef="number">
             <th mat-header-cell *matHeaderCellDef> Nr. </th>
@@ -29,7 +28,7 @@
 
         <!-- Kopf- und Datenzeilen -->
         <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-        <tr mat-row *matRowDef="let row; columns: columnsToDisplay"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnsToDisplay" (click)="goToClassDetail(row.id)" class="clickable-row"></tr>
     </mat-table>
 
     <ng-container *ngIf="!(classes$ | async)?.length">
