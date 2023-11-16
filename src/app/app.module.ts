@@ -11,13 +11,15 @@ import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
-
+import { MatTabsModule } from '@angular/material/tabs';
+import { HomeComponent } from './home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     FooterComponent,
-    DocumentationComponent
+    DocumentationComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +30,7 @@ import { MatTableModule } from '@angular/material/table';
     MatButtonModule,
     BrowserAnimationsModule,
     MatTableModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

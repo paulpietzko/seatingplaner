@@ -1,0 +1,24 @@
+header {
+  background-color: blue; /* Adjust the color to match the image */
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.information-box {
+  border-left: 4px solid blue; /* Adjust the color to match the image */
+  background-color: lightblue; /* Adjust the color to match the image */
+  padding: 15px;
+  margin: 20px 0;
+}
+
+.project-details p,
+.phase h2,
+.phase p {
+  color: #333; /* Dark grey text */
+  margin-left: 20px;
+}
+
+.phase {
+  margin-bottom: 20px;
+}/*# sourceMappingURL=documentation.component.css.map */

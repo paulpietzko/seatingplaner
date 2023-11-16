@@ -1,0 +1,38 @@
+.navbar {
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 3vh;
+}
+.navbar .logo {
+  margin-top: 7px;
+  width: 2rem;
+}
+.navbar .right {
+  display: flex;
+}
+.navbar .right a {
+  width: 7rem;
+  float: none;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  transition: 0.3s ease-in-out;
+}
+.navbar .right a:first-child {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.navbar .right a:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.navbar .right a:not(:last-child) {
+  border-right: 1px solid black;
+}
+.navbar .right a:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: rgb(69, 130, 195);
+}/*# sourceMappingURL=navbar.component.css.map */

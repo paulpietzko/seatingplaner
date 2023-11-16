@@ -1,15 +1,16 @@
 .navbar {
+  background: rgba(124, 45, 45, 0.7);
     overflow: hidden;
     display: flex;
     justify-content: space-between;
     padding: 1rem 3vh;
   
     .logo {
-      margin-top: 7px;
-      width: 2rem;
+      max-width: 10rem;
     }
   
     .right {
+      margin-top: 15px;
       display: flex;
   
       a {

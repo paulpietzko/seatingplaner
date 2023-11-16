@@ -1,0 +1,25 @@
+.footer {
+  color: #fff;
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  background: #2c3e50;
+}
+.footer .footer-section h5 {
+  margin-bottom: 1rem;
+}
+.footer .footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+.footer .footer-section ul li {
+  margin-bottom: 0.5rem;
+}
+.footer .footer-section ul li a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.footer .footer-section ul li a:hover {
+  color: #3498db;
+}/*# sourceMappingURL=footer.component.css.map */

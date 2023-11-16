@@ -1,0 +1,41 @@
+<mat-form-field appearance="fill">
+    <mat-label>Enter class name</mat-label>
+    <input matInput [(ngModel)]="newClassName">
+</mat-form-field>
+<button mat-raised-button color="primary" (click)="createClass()">Add Class</button>
+<ng-container *ngIf="(classes$ | async)?.length else noClasses">
+    <mat-table [dataSource]="classes">
+
+        <!-- Spalten-Definitionen -->
+        <ng-container matColumnDef="number">
+            <th mat-header-cell *matHeaderCellDef> Nr. </th>
+            <td mat-cell *matCellDef="let element; let i = index"> {{i + 1}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="studentsCount">
+            <th mat-header-cell *matHeaderCellDef> Anzahl Schüler </th>
+            <td mat-cell *matCellDef="let element"> {{element.studentsCount}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="creationDate">
+            <th mat-header-cell *matHeaderCellDef> Erstellungsdatum </th>
+            <td mat-cell *matCellDef="let element"> {{element.creationDate | date}} </td>
+        </ng-container>
+
+        <!-- Kopf- und Datenzeilen -->
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnsToDisplay"></tr>
+    </mat-table>
+
+    <ng-container *ngIf="!(classes$ | async)?.length">
+        <p>Create a new class for seating arrangement generation.</p>
+    </ng-container>
+</ng-container>
+<ng-template #noClasses>
+    <p>Create a new class for seating arrangement generation.</p>
+</ng-template>

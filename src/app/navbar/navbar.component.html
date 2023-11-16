@@ -3,8 +3,10 @@
         <img class="logo" src="assets/images/logo.png" alt="Logo">
     </div>
     <div class="right">
-        <a href="/">Home</a>
-        <a href="/seating-plan-generator">Generator </a>
-        <a href="/tutorial">Tutorial</a>
+        <mat-tab-group (selectedIndexChange)="onTabChanged($event)">
+            <mat-tab label="Home"></mat-tab>
+            <mat-tab label="Generator"></mat-tab>
+            <mat-tab label="Tutorial"></mat-tab>
+        </mat-tab-group>
     </div>
 </nav>
