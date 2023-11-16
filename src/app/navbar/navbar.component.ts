@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TabService } from '../tab.service';
+import { Router } from '@angular/router'; 
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +7,22 @@ import { TabService } from '../tab.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
-  constructor(private tabService: TabService) {}
+  constructor(private router: Router) {}
 
   onTabChanged(index: number) {
-    this.tabService.selectTab(index);
+    switch (index) {
+      case 0:
+        this.router.navigate(['/home']);
+        break;
+      case 1:
+        this.router.navigate(['/generator']);
+        break;
+      case 2:
+        this.router.navigate(['/tutorial']);
+        break;
+      default:
+        this.router.navigate(['/']);
+        break;
+    }
   }
 }

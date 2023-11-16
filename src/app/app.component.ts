@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { TabService } from './tab.service';
 import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
@@ -16,11 +15,5 @@ import { trigger, transition, style, animate } from '@angular/animations';
   ]
 })
 export class AppComponent {
-  selectedTab = 0;
 
-  constructor(private tabService: TabService) {
-    this.tabService.selectedTab$.subscribe(tabIndex => {
-      this.selectedTab = tabIndex;
-    });
-  }
 }

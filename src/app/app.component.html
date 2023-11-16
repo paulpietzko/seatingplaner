@@ -1,9 +1,7 @@
 <div class="page-container">
   <app-navbar></app-navbar>
-  <div class="content" [@fadeAnimation]="selectedTab.toString()">
-    <app-home *ngIf="selectedTab === 0"></app-home>
-    <app-generator *ngIf="selectedTab === 1"></app-generator>
-    <app-tutorial *ngIf="selectedTab === 2"></app-tutorial>
+  <div class="content">
+    <router-outlet></router-outlet>
   </div>
   <app-footer></app-footer>
 </div>
