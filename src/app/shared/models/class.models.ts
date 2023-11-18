@@ -1,7 +1,8 @@
 export interface Student {
     id: number;
     name: string;
-    displayName?: string;
+    shortName?: string;
+    numberSuffix?: string; 
 }
   
 export interface Class {

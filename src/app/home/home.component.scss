@@ -1,6 +1,12 @@
 .clickable-row {
     cursor: pointer;
     &:hover {
-      background-color: #efefef; // Eine helle Farbe für den Hover-Effekt
+      background-color: #efefef;
     }
+}
+
+.input {
+  margin: 2rem;
+  display: flex;
+  justify-content: space-between;
 }

@@ -1,11 +1,12 @@
-<mat-form-field appearance="fill">
-    <mat-label>Enter class name</mat-label>
-    <input matInput [(ngModel)]="newClassName">
-</mat-form-field>
-<button mat-raised-button color="primary" (click)="createClass()">Add Class</button>
+<div class="input">
+    <mat-form-field appearance="fill">
+        <mat-label>Klasse hinzufügen</mat-label>
+        <input matInput [(ngModel)]="newClassName">
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="createClass()">Hinzufügen</button>
+</div>
 <ng-container *ngIf="classes.length else noClasses">
     <mat-table [dataSource]="classes">
-        <!-- Spalten-Definitionen -->
         <ng-container matColumnDef="number">
             <th mat-header-cell *matHeaderCellDef> Nr. </th>
             <td mat-cell *matCellDef="let element; let i = index"> {{i + 1}} </td>
@@ -25,8 +26,6 @@
             <th mat-header-cell *matHeaderCellDef> Erstellungsdatum </th>
             <td mat-cell *matCellDef="let element"> {{element.creationDate | date}} </td>
         </ng-container>
-
-        <!-- Kopf- und Datenzeilen -->
         <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
         <tr mat-row *matRowDef="let row; columns: columnsToDisplay" (click)="goToClassDetail(row.id)" class="clickable-row"></tr>
     </mat-table>

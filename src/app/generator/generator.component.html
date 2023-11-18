@@ -1,23 +1,18 @@
-<div class="classroom-layout">
-  <div *ngFor="let row of seats; let rowIndex = index" class="row">
-    <div class="seat"
-         *ngFor="let seat of row; let colIndex = index"
-         (click)="assignStudentToSeat(rowIndex, colIndex)">
-      {{ seat?.displayName || '' }}
-    </div>
-  </div>
-</div>
-
 <div class="layout">
+  <h3>Zimmerstruktur</h3>
   <div class="classroom-layout">
-    <!-- Ihre bestehende Logik für Sitzplätze -->
+    <div *ngFor="let row of seats; let rowIndex = index" class="row">
+      <div *ngFor="let seat of row; let colIndex = index" class="seat" (click)="assignStudentToSeat(rowIndex, colIndex)">
+        {{ seat?.shortName }}{{ seat?.numberSuffix }}
+      </div>
+    </div>
   </div>
 
   <div class="student-list">
     <h3>Schülerliste</h3>
     <ul>
       <li *ngFor="let student of selectedClass.students">
-        {{ student.name }} <span *ngIf="student.displayName !== student.name">{{ student.displayName }}</span>
+        {{ student.name }}<span *ngIf="student.numberSuffix">{{ student.numberSuffix }}</span>
       </li>
     </ul>
   </div>

@@ -1,24 +1,55 @@
 header {
-    background-color: blue; /* Adjust the color to match the image */
+    background-color: #2c3e50;
     color: white;
     padding: 20px;
     text-align: center;
 }
 
 .information-box {
-    border-left: 4px solid blue; /* Adjust the color to match the image */
-    background-color: lightblue; /* Adjust the color to match the image */
+    border-left: 4px solid #4f7091;
+    background-color: #e7f3ff;
     padding: 15px;
     margin: 20px 0;
 }
 
-.project-details p,
-.phase h2,
-.phase p {
-    color: #333; /* Dark grey text */
-    margin-left: 20px;
+.phase {
+    border-left: 4px solid #4f7091;
+    padding: 10px 20px;
+    margin: 20px 0;
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.phase {
-    margin-bottom: 20px;
+.phase h2 {
+    color: #4f7091;
+    border-bottom: 2px solid #4f7091;
+    padding-bottom: 5px;
+}
+
+.phase p {
+    color: #333;
+    font-size: 1em;
+}
+
+.phase ul {
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+.phase li {
+    padding: 2px 0;
+}
+
+.phase li::before {
+    content: '• ';
+    color: #007bff;
+    font-weight: bold;
+}
+
+.phase img {
+    width: 100%;
+    max-width: 800px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    margin-top: 10px;
+    border-radius: 4px;
 }
