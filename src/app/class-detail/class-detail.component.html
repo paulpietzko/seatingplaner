@@ -3,13 +3,12 @@
     <p>Anzahl Schüler: {{ classDetails.studentsCount }}</p>
     <p>Erstellungsdatum: {{ classDetails.creationDate | date }}</p>
 
-    <!-- Eingabefeld zum Hinzufügen von Schülern -->
-    <div class="student-add-form">
-        <input [(ngModel)]="newStudentName" placeholder="Neuen Schüler hinzufügen" class="student-input">
-        <button (click)="addStudent()" class="add-student-btn">Hinzufügen</button>
-    </div>
+    <mat-form-field appearance="fill" class="student-add-form">
+        <mat-label>Neuen Schüler hinzufügen</mat-label>
+        <input matInput [(ngModel)]="newStudentName" placeholder="Name">
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="addStudent()">Hinzufügen</button>
 
-    <!-- Liste der Schüler -->
     <ul class="student-list">
         <li *ngFor="let student of classDetails.students; let i = index" (click)="removeStudent(i)"
             [class.stricken]="hoveredStudent === i" (mouseover)="hoveredStudent = i" (mouseout)="hoveredStudent = null">

@@ -18,6 +18,7 @@ import { GeneratorComponent } from './generator/generator.component';
 import { ImpressumComponent } from './impressum/impressum.component';
 import { ClassDetailComponent } from './class-detail/class-detail.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     TutorialComponent,
     GeneratorComponent,
     ImpressumComponent,
-    ClassDetailComponent
+    ClassDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +43,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatTableModule,
     MatTabsModule,
     MatSnackBarModule,
+    MatFormFieldModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
