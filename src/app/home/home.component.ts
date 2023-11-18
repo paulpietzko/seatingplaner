@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Class, ClassService } from '../class.service';
+import { Class, ClassService } from '../shared/services/class.service';
 import { startWith } from 'rxjs/operators';
 import { Router } from '@angular/router';
 

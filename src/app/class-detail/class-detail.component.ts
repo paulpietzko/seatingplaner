@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Class, ClassService } from '../class.service';
+import { Class, ClassService } from '../shared/services/class.service';
 
 @Component({
   selector: 'app-class-detail',

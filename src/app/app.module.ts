@@ -17,6 +17,7 @@ import { TutorialComponent } from './tutorial/tutorial.component';
 import { GeneratorComponent } from './generator/generator.component';
 import { ImpressumComponent } from './impressum/impressum.component';
 import { ClassDetailComponent } from './class-detail/class-detail.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ClassDetailComponent } from './class-detail/class-detail.component';
     MatButtonModule,
     BrowserAnimationsModule,
     MatTableModule,
-    MatTabsModule
+    MatTabsModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,1 +1,24 @@
-<p>generator works!</p>
+<div class="classroom-layout">
+  <div *ngFor="let row of seats; let rowIndex = index" class="row">
+    <div class="seat"
+         *ngFor="let seat of row; let colIndex = index"
+         (click)="assignStudentToSeat(rowIndex, colIndex)">
+      {{ seat?.displayName || '' }}
+    </div>
+  </div>
+</div>
+
+<div class="layout">
+  <div class="classroom-layout">
+    <!-- Ihre bestehende Logik für Sitzplätze -->
+  </div>
+
+  <div class="student-list">
+    <h3>Schülerliste</h3>
+    <ul>
+      <li *ngFor="let student of selectedClass.students">
+        {{ student.name }} <span *ngIf="student.displayName !== student.name">{{ student.displayName }}</span>
+      </li>
+    </ul>
+  </div>
+</div>
