@@ -1,18 +1,60 @@
+.layout {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
 .classroom-layout {
-    .row {
+  .row {
+    display: flex;
+
+    .seat {
+      width: 60px;
+      height: 50px;
+      border-radius: 2px;
+      border: 1px solid black;
+      margin: 2px;
       display: flex;
-      .seat {
-        width: 60px;
-        height: 50px;
-        border: 1px solid black;
-        margin: 2px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        &:hover {
-          background-color: #e0e0e0;
-        }
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #e0e0e0;
       }
     }
+  }
+}
+
+.student-list {
+  margin-top: 2rem;
+  max-width: 300px;
+}
+
+.student-list h3 {
+  color: #333;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.student-list ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.student-list li {
+  padding: 5px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+
+.student-list li:hover {
+  background-color: #e7f3ff;
+}
+
+.student-list span {
+  font-weight: bold;
+  margin-left: 5px;
 }

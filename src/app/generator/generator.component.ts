@@ -7,7 +7,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './generator.component.html',
   styleUrls: ['./generator.component.scss']
 })
-
 export class GeneratorComponent implements OnInit {
   rows: number = 6;
   cols: number = 10;
@@ -20,44 +19,9 @@ export class GeneratorComponent implements OnInit {
     this.seats = Array.from({ length: this.rows }, () =>
       Array.from({ length: this.cols }, () => null)
     );
-
-    this.selectedClass = {
-      id: 1,
-      name: 'Klasse 10A',
-      studentsCount: 0,  // Add this
-      creationDate: new Date(),  // Add this
-      students: [],
-    };
-  }
-  
-  assignStudentToSeat(row: number, col: number): void {
-    // Überprüfen Sie, ob selectedClass nicht null ist, bevor Sie auf students zugreifen
-    const availableStudents = this.selectedClass?.students.filter(
-      (student) => !this.seats.flat().includes(student)
-    ) || [];
-  
-    if (availableStudents.length === 0) {
-      this.snackBar.open('Alle Schüler sind bereits platziert.', 'X', {
-        duration: 3000,
-      });
-      return;
-    }
-  
-    const randomIndex = Math.floor(Math.random() * availableStudents.length);
-    const student = availableStudents[randomIndex];
-  
-    this.seats[row][col] = student;
-  }
-
-  maxColWidth: number = 60;
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event: Event) {
-    this.adjustCols();
   }
 
   ngOnInit() {
-    this.prepareDisplayNames();
     this.adjustCols();
     this.loadClasses();
   }
@@ -68,21 +32,9 @@ export class GeneratorComponent implements OnInit {
       if (this.classes.length > 0) {
         this.selectedClassId = this.classes[0].id;
         this.selectedClass = this.classes[0];
+        this.prepareDisplayNames();
       }
     });
-  }
-
-  adjustCols() {
-    const screenWidth = window.innerWidth;
-    const maxCols = Math.floor((screenWidth * 0.9) / this.maxColWidth);
-    this.cols = Math.min(maxCols, 15);
-    this.createSeats();
-  }
-
-  createSeats() {
-    this.seats = Array.from({ length: this.rows }, () =>
-      Array.from({ length: this.cols }, () => null)
-    );
   }
 
   onClassChange(classId: number) {
@@ -97,17 +49,51 @@ export class GeneratorComponent implements OnInit {
     if (!this.selectedClass) return;
 
     const nameCount = new Map<string, number>();
-  
-    // Nutzen Sie selectedClass.students statt selectedClass?.students
+
     this.selectedClass.students.forEach(student => {
       const shortName = student.name.slice(0, 3).toUpperCase();
       let count = nameCount.get(shortName) || 0;
-      
-      // Speichern Sie die Nummer separat, wenn es Duplikate gibt.
+
       student.shortName = shortName;
       student.numberSuffix = count > 0 ? `(${count + 1})` : '';
-      
+
       nameCount.set(shortName, count + 1);
     });
+  }
+
+  assignStudentToSeat(row: number, col: number): void {
+    const availableStudents = this.selectedClass?.students.filter(
+      (student) => !this.seats.flat().includes(student)
+    ) || [];
+
+    if (availableStudents.length === 0) {
+      this.snackBar.open('Alle Schüler sind bereits platziert.', 'X', {
+        duration: 3000,
+      });
+      return;
+    }
+
+    const randomIndex = Math.floor(Math.random() * availableStudents.length);
+    const student = availableStudents[randomIndex];
+
+    this.seats[row][col] = student;
+  }
+
+  adjustCols() {
+    const screenWidth = window.innerWidth;
+    const maxCols = Math.floor((screenWidth * 0.9) / 60);
+    this.cols = Math.min(maxCols, 15);
+    this.createSeats();
+  }
+
+  createSeats() {
+    this.seats = Array.from({ length: this.rows }, () =>
+      Array.from({ length: this.cols }, () => null)
+    );
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.adjustCols();
   }
 }
