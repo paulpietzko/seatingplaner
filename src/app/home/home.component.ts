@@ -36,7 +36,8 @@ export class HomeComponent {
         id: Date.now(),
         name: this.newClassName,
         studentsCount: 0,
-        creationDate: new Date()
+        creationDate: new Date(),
+        students: [],
       };
       this.classService.addClass(newClass);
       this.newClassName = '';

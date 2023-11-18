@@ -1,9 +1,21 @@
-<!-- class-detail.component.html -->
 <div *ngIf="classDetails; else noClassDetails">
     <h2>{{ classDetails.name }}</h2>
     <p>Anzahl Schüler: {{ classDetails.studentsCount }}</p>
     <p>Erstellungsdatum: {{ classDetails.creationDate | date }}</p>
-    <!-- Weitere Details der Klasse hier -->
+
+    <!-- Eingabefeld zum Hinzufügen von Schülern -->
+    <div class="student-add-form">
+        <input [(ngModel)]="newStudentName" placeholder="Neuen Schüler hinzufügen" class="student-input">
+        <button (click)="addStudent()" class="add-student-btn">Hinzufügen</button>
+    </div>
+
+    <!-- Liste der Schüler -->
+    <ul class="student-list">
+        <li *ngFor="let student of classDetails.students; let i = index" (click)="removeStudent(i)"
+            [class.stricken]="hoveredStudent === i" (mouseover)="hoveredStudent = i" (mouseout)="hoveredStudent = null">
+            {{ student.name }}
+        </li>
+    </ul>
 </div>
 
 <ng-template #noClassDetails>

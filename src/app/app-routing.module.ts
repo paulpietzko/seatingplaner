@@ -5,6 +5,7 @@ import { GeneratorComponent } from './generator/generator.component';
 import { TutorialComponent } from './tutorial/tutorial.component';
 import { DocumentationComponent } from './documentation/documentation.component';
 import { ClassDetailComponent } from './class-detail/class-detail.component';
+import { ImpressumComponent } from './impressum/impressum.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'generator', component: GeneratorComponent },
   { path: 'tutorial', component: TutorialComponent },
   { path: 'documentation', component: DocumentationComponent },
+  { path: 'impressum', component: ImpressumComponent },
   { path: 'class-detail/:id', component: ClassDetailComponent },
 ];
 

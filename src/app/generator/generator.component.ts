@@ -22,14 +22,9 @@ export class GeneratorComponent implements OnInit {
     this.selectedClass = {
       id: 1,
       name: 'Klasse 10A',
-      students: [
-        { id: 1, name: 'Alina' },
-        { id: 2, name: 'Max' },
-        { id: 3, name: 'Peter' },
-        { id: 4, name: 'Susanne' },
-        { id: 5, name: 'Tim' },
-        { id: 6, name: 'Timmi' },
-      ],
+      studentsCount: 0,  // Add this
+      creationDate: new Date(),  // Add this
+      students: [],
     };
   }
 
@@ -51,7 +46,7 @@ export class GeneratorComponent implements OnInit {
     this.seats[row][col] = student;
   }
 
-  maxColWidth: number = 60; // Die maximale Breite eines Sitzes in Pixel
+  maxColWidth: number = 60;
 
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
