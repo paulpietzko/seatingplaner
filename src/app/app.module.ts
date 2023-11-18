@@ -19,6 +19,7 @@ import { ImpressumComponent } from './impressum/impressum.component';
 import { ClassDetailComponent } from './class-detail/class-detail.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatTableModule,
     MatTabsModule,
     MatSnackBarModule,
+    MatFormFieldModule,
+    MatSelectModule,
     MatFormFieldModule,
   ],
   providers: [],

@@ -1,5 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-import { Class, Student } from '../shared/models/class.models';
+import { Class, Student, ClassService } from '../shared/services/class.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -12,9 +12,11 @@ export class GeneratorComponent implements OnInit {
   rows: number = 6;
   cols: number = 10;
   seats: (Student | null)[][];
-  selectedClass: Class;
+  selectedClassId: number | null = null;
+  classes: Class[] = [];
+  selectedClass: Class | null = null;
 
-  constructor(private snackBar: MatSnackBar) {
+  constructor(private snackBar: MatSnackBar, private classService: ClassService) {
     this.seats = Array.from({ length: this.rows }, () =>
       Array.from({ length: this.cols }, () => null)
     );
@@ -27,22 +29,23 @@ export class GeneratorComponent implements OnInit {
       students: [],
     };
   }
-
+  
   assignStudentToSeat(row: number, col: number): void {
-    const availableStudents = this.selectedClass.students.filter(
+    // Überprüfen Sie, ob selectedClass nicht null ist, bevor Sie auf students zugreifen
+    const availableStudents = this.selectedClass?.students.filter(
       (student) => !this.seats.flat().includes(student)
-    );
-
+    ) || [];
+  
     if (availableStudents.length === 0) {
       this.snackBar.open('Alle Schüler sind bereits platziert.', 'X', {
         duration: 3000,
       });
       return;
     }
-
+  
     const randomIndex = Math.floor(Math.random() * availableStudents.length);
     const student = availableStudents[randomIndex];
-
+  
     this.seats[row][col] = student;
   }
 
@@ -56,6 +59,17 @@ export class GeneratorComponent implements OnInit {
   ngOnInit() {
     this.prepareDisplayNames();
     this.adjustCols();
+    this.loadClasses();
+  }
+
+  loadClasses() {
+    this.classService.classes$.subscribe(classes => {
+      this.classes = classes;
+      if (this.classes.length > 0) {
+        this.selectedClassId = this.classes[0].id;
+        this.selectedClass = this.classes[0];
+      }
+    });
   }
 
   adjustCols() {
@@ -71,9 +85,20 @@ export class GeneratorComponent implements OnInit {
     );
   }
 
+  onClassChange(classId: number) {
+    this.selectedClass = this.classes.find(c => c.id === classId) || null;
+    this.createSeats();
+    if (this.selectedClass) {
+      this.prepareDisplayNames();
+    }
+  }
+
   prepareDisplayNames(): void {
+    if (!this.selectedClass) return;
+
     const nameCount = new Map<string, number>();
   
+    // Nutzen Sie selectedClass.students statt selectedClass?.students
     this.selectedClass.students.forEach(student => {
       const shortName = student.name.slice(0, 3).toUpperCase();
       let count = nameCount.get(shortName) || 0;

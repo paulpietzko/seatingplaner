@@ -1,4 +1,15 @@
 <div class="layout">
+  <div class="class-selection">
+    <mat-form-field appearance="fill">
+      <mat-label>Klasse auswählen</mat-label>
+      <mat-select [(value)]="selectedClassId" (selectionChange)="onClassChange($event.value)">
+        <mat-option *ngFor="let class of classes" [value]="class.id">
+          {{ class.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
   <h3>Zimmerstruktur</h3>
   <div class="classroom-layout">
     <div *ngFor="let row of seats; let rowIndex = index" class="row">
@@ -11,7 +22,7 @@
   <div class="student-list">
     <h3>Schülerliste</h3>
     <ul>
-      <li *ngFor="let student of selectedClass.students">
+      <li *ngFor="let student of selectedClass?.students">
         {{ student.name }}<span *ngIf="student.numberSuffix">{{ student.numberSuffix }}</span>
       </li>
     </ul>

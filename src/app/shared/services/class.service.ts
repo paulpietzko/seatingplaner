@@ -29,7 +29,11 @@ export class ClassService {
   getClassById(id: number): Observable<Class | undefined> {
     const foundClass = this.classesSubject.value.find(c => c.id === id);
     return of(foundClass);
-  } 
+  }
+
+  getAllClasses(): Observable<Class[]> {
+    return of(this.classesSubject.value);
+  }
 }
 export { Student, Class };
 
