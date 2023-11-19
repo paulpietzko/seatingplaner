@@ -1,3 +1,7 @@
+<div class="input">
+    <a mat-raised-button color="primary" (click)="navigateHome()">Zurück</a>
+    <a mat-raised-button color="primary" (click)="navigateGenerator()">Generieren</a>
+</div>
 <div *ngIf="classDetails; else noClassDetails">
     <h2>{{ classDetails.name }}</h2>
     <p>Anzahl Schüler: {{ classDetails.studentsCount }}</p>

@@ -1,13 +1,12 @@
 <div class="tutorial-container">
-    <h1>Tutorial: Sitzplatz-Generator</h1>
-    <section *ngFor="let step of tutorialSteps; let i = index" class="tutorial-section">
-      <h2 (click)="toggleStep(i)">
-        <span class="chevron" [class.rotated]="step.isExpanded">&#x25BA;</span> <!-- Chevron-Symbol -->
-        {{ step.title }}
-      </h2>
-      <p *ngFor="let text of step.texts" [innerHTML]="text"></p>
-      <ng-container *ngIf="step.isExpanded">
-        <img *ngFor="let image of step.images" [src]="image.src" [alt]="image.alt">
-      </ng-container>
-    </section>
-  </div>
+  <section *ngFor="let step of tutorialSteps; let i = index" class="tutorial-section">
+    <h2 (click)="toggleStep(i)">
+      <span class="chevron" [class.rotated]="step.isExpanded">&#x25BA;</span> <!-- Chevron-Symbol -->
+      {{ step.title }}
+    </h2>
+    <p *ngFor="let text of step.texts" [innerHTML]="text"></p>
+    <ng-container *ngIf="step.isExpanded">
+      <img *ngFor="let image of step.images" [src]="image.src" [alt]="image.alt">
+    </ng-container>
+  </section>
+</div>

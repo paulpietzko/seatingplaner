@@ -29,11 +29,7 @@
         <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
         <tr mat-row *matRowDef="let row; columns: columnsToDisplay" (click)="goToClassDetail(row.id)" class="clickable-row"></tr>
     </mat-table>
-
-    <ng-container *ngIf="!(classes$ | async)?.length">
-        <p>Create a new class for seating arrangement generation.</p>
-    </ng-container>
 </ng-container>
 <ng-template #noClasses>
-    <p>Create a new class for seating arrangement generation.</p>
+    <p>Erstelle eine neue Klasse für die Sitzplatzgenerierung.</p>
 </ng-template>

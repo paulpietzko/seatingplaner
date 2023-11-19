@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router'; 
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -7,22 +7,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
-  constructor(private router: Router) {}
+  private routes = ['/home', '/generator', '/tutorial'];
+
+  constructor(private router: Router) { }
 
   onTabChanged(index: number) {
-    switch (index) {
-      case 0:
-        this.router.navigate(['/home']);
-        break;
-      case 1:
-        this.router.navigate(['/generator']);
-        break;
-      case 2:
-        this.router.navigate(['/tutorial']);
-        break;
-      default:
-        this.router.navigate(['/']);
-        break;
-    }
+    const route = this.routes[index] || '/'; // mat-tab index wird mit routes array abgeglichen
+    this.router.navigate([route]);
   }
 }

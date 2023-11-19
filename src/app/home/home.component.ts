@@ -13,20 +13,19 @@ export class HomeComponent {
   newClassName: string = '';
   columnsToDisplay = ['number', 'name', 'studentsCount', 'creationDate'];
   classes: Class[] = [];
-  classes$: Observable<Class[]>;
+  classes$: Observable<Class[]>; // Asynchrone Datenquelle für Klassen-Datenstrom
 
   constructor(
     private classService: ClassService,
     private router: Router
   ) {
-    this.classes$ = this.classService.classes$.pipe(startWith([]));
+    this.classes$ = this.classService.classes$.pipe(startWith([])); // Reihe von Operatoren, um Daten zu verarbeiten, bevor sie weiterverwendet werden
     this.classService.classes$.subscribe(classes => {
-      this.classes = classes ?? [];
+      this.classes = classes ?? []; // Reagiert auf ausgegebene Daten des Observables
     });
   }
 
   goToClassDetail(classId: number) {
-    console.log('Navigating to class with ID:', classId);
     this.router.navigate(['/class-detail', classId]);
   }
 

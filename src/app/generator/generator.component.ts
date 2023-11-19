@@ -10,10 +10,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class GeneratorComponent implements OnInit {
   rows: number = 6;
   cols: number = 10;
-  seats: (Student | null)[][];
+  seats: (Student | null)[][]; // 2 Dimensionales Array
   selectedClassId: number | null = null;
-  classes: Class[] = [];
   selectedClass: Class | null = null;
+  classes: Class[] = [];
 
   constructor(private snackBar: MatSnackBar, private classService: ClassService) {
     this.seats = Array.from({ length: this.rows }, () =>
@@ -48,7 +48,7 @@ export class GeneratorComponent implements OnInit {
   prepareDisplayNames(): void {
     if (!this.selectedClass) return;
 
-    const nameCount = new Map<string, number>();
+    const nameCount = new Map<string, number>(); // Datenstruktur, die Schlüssel-Wert-Paare speichert
 
     this.selectedClass.students.forEach(student => {
       const shortName = student.name.slice(0, 3).toUpperCase();
@@ -63,12 +63,12 @@ export class GeneratorComponent implements OnInit {
 
   assignStudentToSeat(row: number, col: number): void {
     const availableStudents = this.selectedClass?.students.filter(
-      (student) => !this.seats.flat().includes(student)
+      (student) => !this.seats.flat().includes(student) // Verschachtelte Ebenen des Arrays werden entfernt
     ) || [];
 
     if (availableStudents.length === 0) {
       this.snackBar.open('Alle Schüler sind bereits platziert.', 'X', {
-        duration: 3000,
+        duration: 4000,
       });
       return;
     }
@@ -81,7 +81,7 @@ export class GeneratorComponent implements OnInit {
 
   adjustCols() {
     const screenWidth = window.innerWidth;
-    const maxCols = Math.floor((screenWidth * 0.9) / 60);
+    const maxCols = Math.floor((screenWidth * 0.8) / 60);
     this.cols = Math.min(maxCols, 15);
     this.createSeats();
   }
@@ -92,7 +92,7 @@ export class GeneratorComponent implements OnInit {
     );
   }
 
-  @HostListener('window:resize', ['$event'])
+  @HostListener('window:resize', ['$event']) // Decorator, um auf Ereignis zu hören
   onResize(event: Event) {
     this.adjustCols();
   }

@@ -1,12 +1,8 @@
 <nav class="navbar">
-    <div class="left">
-        <img class="logo" src="assets/images/logo.png" alt="Logo">
-    </div>
-    <div class="right">
-        <mat-tab-group (selectedIndexChange)="onTabChanged($event)">
-            <mat-tab label="Home"></mat-tab>
-            <mat-tab label="Generator"></mat-tab>
-            <mat-tab label="Tutorial"></mat-tab>
-        </mat-tab-group>
-    </div>
+  <img class="logo" src="assets/images/logo.png" alt="Logo">
+  <mat-tab-group (selectedIndexChange)="onTabChanged($event)">
+    <mat-tab label="Home"></mat-tab>
+    <mat-tab label="Generator"></mat-tab>
+    <mat-tab label="Tutorial"></mat-tab>
+  </mat-tab-group>
 </nav>

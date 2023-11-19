@@ -1,47 +1,13 @@
 .navbar {
   background: rgba(124, 45, 45, 0.7);
-    overflow: hidden;
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem 3vh;
-  
-    .logo {
-      max-width: 10rem;
-    }
-  
-    .right {
-      margin-top: 18px;
-      display: flex;
-  
-      a {
-        width: 7rem;
-        float: none;
-        display: block;
-        color: black;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-        transition: 0.3s ease-in-out;
-  
-        &:first-child {
-          border-top-left-radius: 10px;
-          border-bottom-left-radius: 10px;
-        }
-  
-        &:last-child {
-          border-top-right-radius: 5px;
-          border-bottom-right-radius: 5px;
-        }
-  
-        &:not(:last-child) {
-          border-right: 1px solid black;
-        }
-  
-        &:hover {
-          background-color: rgba(0, 0, 0, 0.050);
-          color: rgb(69, 130, 195);
-        }
-      }
-    }
+  display: flex;
+  justify-content: space-between;
+
+  .logo {
+    max-width: 10rem;
   }
-  
+
+  mat-tab-group {
+    margin-top: 18px;
+  }
+}

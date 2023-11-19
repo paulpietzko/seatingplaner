@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Class, Student, ClassService } from '../shared/services/class.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-class-detail',
@@ -15,27 +16,31 @@ export class ClassDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private classService: ClassService
-  ) {}
+    private classService: ClassService,
+    private router: Router
+  ) { }
+
+  navigateHome() {
+    this.router.navigate(['../home/']);
+  }
+
+  navigateGenerator() {
+    this.router.navigate(['../generator/']);
+  }
 
   ngOnInit() {
     const classId = this.route.snapshot.paramMap.get('id');
-    if (classId !== null) {
-      this.classService.getClassById(+classId).subscribe(
+    const id = Number(classId);
+    if (!isNaN(id) && id > 0) {
+      this.classService.getClassById(id).subscribe(
         details => {
-          console.log('Class details:', details);  // Debugging output
           if (details) {
-            if (!details.students) {
+            if (!details.students) { // Initialisiert 'students' Liste, falls noch nicht vorhanden
               details.students = [];
               this.classService.updateClass(details);
             }
             this.classDetails = details;
-          } else {
-            console.log('Klasse nicht gefunden');
           }
-        },
-        error => {
-          console.error('Error fetching class details:', error);
         }
       );
     }
@@ -53,7 +58,7 @@ export class ClassDetailComponent implements OnInit {
       this.classService.updateClass(this.classDetails);
     }
   }
-  
+
   removeStudent(index: number) {
     if (this.classDetails) {
       this.classDetails.students.splice(index, 1);
