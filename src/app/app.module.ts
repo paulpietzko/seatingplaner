@@ -9,7 +9,6 @@ import { DocumentationComponent } from './documentation/documentation.component'
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { HomeComponent } from './home/home.component';
@@ -41,7 +40,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatInputModule,
     MatListModule,
     MatButtonModule,
-    BrowserAnimationsModule,
     MatTableModule,
     MatTabsModule,
     MatSnackBarModule,
