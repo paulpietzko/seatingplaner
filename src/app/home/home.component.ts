@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ClassService } from '../shared/services/class.service';
 import { Class } from '../shared/models/class.models';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -15,10 +17,10 @@ export class HomeComponent {
   );
   columnsToDisplay = ['number', 'name', 'studentsCount', 'creationDate'];
 
-  constructor(private classService: ClassService) {}
+  constructor(private classService: ClassService, private router: Router) {}
 
   goToClassDetail(classId: string) {
-    console.log('Navigiere zu Klasse mit ID:', classId);
+    this.router.navigate(['/class-detail', classId]);
   }
 
   createClass() {
