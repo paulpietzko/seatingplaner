@@ -1,13 +1,25 @@
 .navbar {
-  background: rgba(124, 45, 45, 0.7);
+  background: #a36c6c;
   display: flex;
   justify-content: space-between;
+  list-style: none;
+  // position: fixed;
+  // width: 100%;
+
+  .links {
+    margin-top: 2rem;
+    margin-right: 2rem;
+    display: flex;
+  }
+
+  a {
+    font-size: 1.2rem;
+    padding-left: 1rem;
+    color: #fff;
+    text-decoration: none;
+  }
 
   .logo {
     max-width: 10rem;
-  }
-
-  mat-tab-group {
-    margin-top: 18px;
   }
 }

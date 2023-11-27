@@ -1,30 +1,35 @@
-<div class="layout">
-  <div class="class-selection">
-    <mat-form-field appearance="fill">
-      <mat-label>Klasse auswählen</mat-label>
-      <mat-select [(value)]="selectedClassId" (selectionChange)="onClassChange($event.value)">
-        <mat-option *ngFor="let class of classes" [value]="class.id">
-          {{ class.name }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+<div class="generator">
+  <div class="settings-tab">
+    <h2>Settings</h2>
   </div>
-
-  <h3>Zimmerstruktur</h3>
-  <div class="classroom-layout">
-    <div *ngFor="let row of seats; let rowIndex = index" class="row">
-      <div *ngFor="let seat of row; let colIndex = index" class="seat" (click)="assignStudentToSeat(rowIndex, colIndex)">
-        {{ seat?.shortName }}{{ seat?.numberSuffix }}
+  <div class="layout">
+    <div class="class-selection">
+      <mat-form-field appearance="fill">
+        <mat-label>Klasse auswählen</mat-label>
+        <mat-select [(value)]="selectedClassId" (selectionChange)="onClassChange($event.value)">
+          <mat-option *ngFor="let class of classes" [value]="class.id">
+            {{ class.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  
+    <h3>Zimmerstruktur</h3>
+    <div class="classroom-layout">
+      <div *ngFor="let row of seats; let rowIndex = index" class="row">
+        <div *ngFor="let seat of row; let colIndex = index" class="seat" (click)="assignStudentToSeat(rowIndex, colIndex)">
+          {{ seat?.shortName }}{{ seat?.numberSuffix }}
+        </div>
       </div>
     </div>
-  </div>
-
-  <div class="student-list">
-    <h3>Schülerliste</h3>
-    <ul>
-      <li *ngFor="let student of selectedClass?.students">
-        {{ student.name }}<span *ngIf="student.numberSuffix">{{ student.numberSuffix }}</span>
-      </li>
-    </ul>
+  
+    <div class="student-list">
+      <h3>Schülerliste</h3>
+      <ul>
+        <li *ngFor="let student of selectedClass?.students">
+          {{ student.name }}<span *ngIf="student.numberSuffix">{{ student.numberSuffix }}</span>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>

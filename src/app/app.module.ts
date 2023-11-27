@@ -18,8 +18,10 @@ import { ImpressumComponent } from './impressum/impressum.component';
 import { ClassDetailComponent } from './class-detail/class-detail.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatSelectModule} from '@angular/material/select';
+import {  MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     GeneratorComponent,
     ImpressumComponent,
     ClassDetailComponent,
+    SettingsComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +49,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatSelectModule,
     MatFormFieldModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
