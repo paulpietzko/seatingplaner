@@ -1,45 +1,34 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Class, ClassService } from '../shared/services/class.service';
-import { startWith } from 'rxjs/operators';
-import { Router } from '@angular/router';
-
+import { ClassService } from '../shared/services/class.service';
+import { Class } from '../shared/models/class.models';
+import { map } from 'rxjs/operators';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
+
 export class HomeComponent {
-  newClassName: string = '';
+  newClassName = '';
+  classes$ = this.classService.getClasses().pipe(
+    map((classes: Class[] | null) => classes ?? []) // '??', um 'null' in ein leeres Array zu konvertieren
+  );
   columnsToDisplay = ['number', 'name', 'studentsCount', 'creationDate'];
-  classes: Class[] = [];
-  classes$: Observable<Class[]>; // Asynchrone Datenquelle für Klassen-Datenstrom
 
-  constructor(
-    private classService: ClassService,
-    private router: Router
-  ) {
-    this.classes$ = this.classService.classes$.pipe(startWith([])); // Reihe von Operatoren, um Daten zu verarbeiten, bevor sie weiterverwendet werden
-    this.classService.classes$.subscribe(classes => {
-      this.classes = classes ?? []; // Reagiert auf ausgegebene Daten des Observables
-    });
-  }
+  constructor(private classService: ClassService) {}
 
-  goToClassDetail(classId: number) {
-    this.router.navigate(['/class-detail', classId]);
+  goToClassDetail(classId: string) {
+    console.log('Navigiere zu Klasse mit ID:', classId);
   }
 
   createClass() {
-    if (this.newClassName) {
-      const newClass: Class = {
-        id: Date.now(),
-        name: this.newClassName,
-        studentsCount: 0,
-        creationDate: new Date(),
-        students: [],
-      };
-      this.classService.addClass(newClass);
+    if (this.newClassName.trim() === '') return;
+
+    this.classService.addClass({ name: this.newClassName }).then(() => {
+      console.log('Klasse wurde erstellt');
       this.newClassName = '';
-    }
+    }).catch(error => {
+      console.error('Fehler beim Erstellen der Klasse: ', error);
+    });
   }
 }

@@ -1,7 +1,7 @@
 {
   "hosting": {
   "site": "seatingenerator-2sic",
-  "public": "dist/seatingenerator"
+  "public": "dist/seatingplaner"
   },
   "firestore": {
     "rules": "firestore.rules",

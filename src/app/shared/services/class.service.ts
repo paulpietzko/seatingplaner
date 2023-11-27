@@ -1,32 +1,46 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
-import { Student, Class } from '../models/class.models';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Class } from '../models/class.models';
+import { map } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class ClassService {
-  private classesSubject = new BehaviorSubject<Class[]>([]); // Initialisiert Observable mit leeren Array von Class-Objekten als Anfangswert
-  classes$ = this.classesSubject.asObservable();
-
-  constructor() { }
+  constructor(private firestore: AngularFirestore) {}
+  
+  getClassById(classId: string) {
+    return this.firestore.collection('classes').doc(classId).snapshotChanges().pipe(
+      map(action => {
+        const data = action.payload.data() as Class;
+        const id = action.payload.id;
+        // Entfernen der `id` aus `data`, falls vorhanden
+        const { id: dataId, ...rest } = data; 
+        return { id, ...rest };
+      })
+    );
+  }
 
   updateClass(updatedClass: Class) {
-    const classes = [...this.classesSubject.value]; // Erstellt eine Kopie des Arrays
-    const classIndex = classes.findIndex(c => c.id === updatedClass.id);
-    if (classIndex > -1) {
-      classes[classIndex] = updatedClass;
-      this.classesSubject.next(classes); // Aktualisiert das Subject mit der neuen Array-Instanz
-    }
+    const classId = String(updatedClass.id);  
+    return this.firestore.collection('classes').doc(classId).update(updatedClass);
   }
 
-  addClass(newClass: Class) {
-    const currentClasses = [...this.classesSubject.value];
-    this.classesSubject.next([...currentClasses, newClass]);
+  addClass(newClass: { name: string }) {
+    return this.firestore.collection('classes').add({
+      ...newClass,
+      studentsCount: 0,
+      creationDate: new Date(),
+      students: []
+    });
   }
 
-  getClassById(id: number): Observable<Class | undefined> {
-    const foundClass = this.classesSubject.value.find(c => c.id === id);
-    return of(foundClass);
+  getClasses() {
+    return this.firestore.collection<Class>('classes').snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as Class;
+        const id = a.payload.doc.id;
+        const { id: _, ...rest } = data;
+        return { id, ...rest };
+      }))
+    );
   }
 }
-
-export { Student, Class };

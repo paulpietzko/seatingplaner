@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Class, Student, ClassService } from '../shared/services/class.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Class, Student } from '../shared/models/class.models';
+import { ClassService } from '../shared/services/class.service';
 
 @Component({
   selector: 'app-class-detail',
@@ -18,24 +18,15 @@ export class ClassDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private classService: ClassService,
     private router: Router
-  ) { }
-
-  navigateHome() {
-    this.router.navigate(['../home/']);
-  }
-
-  navigateGenerator() {
-    this.router.navigate(['../generator/']);
-  }
+  ) {}
 
   ngOnInit() {
     const classId = this.route.snapshot.paramMap.get('id');
-    const id = Number(classId);
-    if (!isNaN(id) && id > 0) {
-      this.classService.getClassById(id).subscribe(
+    if (classId) {
+      this.classService.getClassById(classId).subscribe(
         details => {
           if (details) {
-            if (!details.students) { // Initialisiert 'students' Liste, falls noch nicht vorhanden
+            if (!details.students) {
               details.students = [];
               this.classService.updateClass(details);
             }

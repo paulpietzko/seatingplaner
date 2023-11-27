@@ -1,5 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-import { Class, Student, ClassService } from '../shared/services/class.service';
+import { Class, Student } from '../shared/models/class.models';
+import { ClassService } from '../shared/services/class.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -7,11 +8,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './generator.component.html',
   styleUrls: ['./generator.component.scss']
 })
+
 export class GeneratorComponent implements OnInit {
   rows: number = 6;
   cols: number = 10;
   seats: (Student | null)[][]; // 2 Dimensionales Array
-  selectedClassId: number | null = null;
+  selectedClassId: string | null = null;
   selectedClass: Class | null = null;
   classes: Class[] = [];
 
@@ -27,7 +29,7 @@ export class GeneratorComponent implements OnInit {
   }
 
   loadClasses() {
-    this.classService.classes$.subscribe(classes => {
+    this.classService.getClasses().subscribe(classes => {
       this.classes = classes;
       if (this.classes.length > 0) {
         this.selectedClassId = this.classes[0].id;
@@ -37,7 +39,7 @@ export class GeneratorComponent implements OnInit {
     });
   }
 
-  onClassChange(classId: number) {
+  onClassChange(classId: string) {
     this.selectedClass = this.classes.find(c => c.id === classId) || null;
     this.createSeats();
     if (this.selectedClass) {

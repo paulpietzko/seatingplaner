@@ -4,11 +4,11 @@ export interface Student {
   shortName?: string;
   numberSuffix?: string;
 }
-  
-  export interface Class {
-    id: number;
-    name: string;
-    studentsCount: number;
-    creationDate: Date;
-    students: Student[]; 
+
+export interface Class {
+  id: string;
+  name: string;
+  studentsCount: number;
+  creationDate: Date;
+  students: Student[];
 }
