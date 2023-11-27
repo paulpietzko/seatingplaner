@@ -1,0 +1,10 @@
+{
+  "hosting": {
+  "site": "seatingenerator-2sic",
+  "public": "dist/seatingenerator"
+  },
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  }
+}

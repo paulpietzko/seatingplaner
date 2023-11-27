@@ -18,10 +18,22 @@ import { ImpressumComponent } from './impressum/impressum.component';
 import { ClassDetailComponent } from './class-detail/class-detail.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {  MatSelectModule } from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SettingsComponent } from './settings/settings.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyA9jn4vmXZMfCTNiYDvnFXBkjObB8DVpNk",
+  authDomain: "seatingenerator.firebaseapp.com",
+  databaseURL: "https://seatingenerator-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "seatingenerator",
+  storageBucket: "seatingenerator.appspot.com",
+  messagingSenderId: "1006018309314",
+  appId: "1:1006018309314:web:cabc375eb49d5151619f5b"
+};
 
 @NgModule({
   declarations: [
@@ -48,9 +60,10 @@ import { SettingsComponent } from './settings/settings.component';
     MatSnackBarModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatFormFieldModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFirestoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
