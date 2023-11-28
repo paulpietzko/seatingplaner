@@ -1,7 +1,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Class, Student } from '../shared/models/class.models';
 import { ClassService } from '../shared/services/class.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-generator',
@@ -16,14 +16,35 @@ export class GeneratorComponent implements OnInit {
   selectedClassId: string | null = null;
   selectedClass: Class | null = null;
   classes: Class[] = [];
+  students: Student[] = [];
 
-  constructor(private snackBar: MatSnackBar, private classService: ClassService) {
+  constructor(private snackBar: MatSnackBar, private classService: ClassService ) {
     this.seats = Array.from({ length: this.rows }, () => // Initialisiert Sitzplätze
       Array.from({ length: this.cols }, () => null)
     );
   }
 
+  loadStudents() {
+    this.classService.getClasses().subscribe(classes => {
+      if (classes.length > 0) {
+        this.students = classes[0].students; // Now 'students' is a declared property
+        // Handle class selection logic as needed
+      } else {
+        this.students = []; // Ensure students is an empty array if no classes are found
+        this.snackBar.open('Keine Klassen gefunden.', 'Schließen', {
+          duration: 3000,
+        });
+      }
+    }, error => {
+      // Handle potential error here
+      this.snackBar.open('Fehler beim Laden der Klassen.', 'Schließen', {
+        duration: 3000,
+      });
+    });
+  }
+
   ngOnInit() {
+    this.loadStudents();
     this.adjustCols();
     this.loadClasses();
   }

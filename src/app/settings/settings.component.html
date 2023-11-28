@@ -1,19 +1,41 @@
 <div class="settings-container">
     <section class="settings-section">
-        <h1>Settings</h1>
+        <h1>Einstellungen</h1>
         <div class="tab">
-            <h2>
-                <span class="chevron">&#x25BA;</span>
-                Pärchen die Zusammensitzen müssen
+            <h2 (click)="togglePairings()">
+                <span class="chevron" [ngClass]="{'rotated': isPairingsOpen}">&#x25BA;</span>
+                Pärchen, die zusammensitzen müssen
             </h2>
-            <p></p>
+            <div class="tab-content" [ngClass]="{'open': isPairingsOpen}">
+                <select [(ngModel)]="selectedStudentOneId">
+                    <option *ngFor="let student of students" [value]="student.id">{{ student.name }}</option>
+                </select>
+                <select [(ngModel)]="selectedStudentTwoId">
+                    <option *ngFor="let student of students" [value]="student.id">{{ student.name }}</option>
+                </select>
+                <button (click)="handlePairSelection(selectedStudentOneId ?? '', selectedStudentTwoId ?? '', true)">
+                    Paar hinzufügen
+                </button>
+                <p>Aktuelle Paarungen: {{ getPairingsDisplay(mustSitTogether) }}</p>
+            </div>
         </div>
         <div class="tab">
-            <h2>
-                <span class="chevron">&#x25BA;</span>
-                Pärchen die nicht Zusammensitzen dürfen
+            <h2 (click)="toggleAntiPairings()">
+                <span class="chevron" [ngClass]="{'rotated': isAntiPairingsOpen}">&#x25BA;</span>
+                Pärchen, die nicht zusammensitzen dürfen
             </h2>
-            <p></p>
+            <div class="tab-content" [ngClass]="{'open': isAntiPairingsOpen}">
+                <select [(ngModel)]="selectedStudentOneAntiId">
+                    <option *ngFor="let student of students" [value]="student.id">{{ student.name }}</option>
+                </select>
+                <select [(ngModel)]="selectedStudentTwoAntiId">
+                    <option *ngFor="let student of students" [value]="student.id">{{ student.name }}</option>
+                </select>
+                <button (click)="handlePairSelection(selectedStudentOneAntiId ?? '', selectedStudentTwoAntiId ?? '', false)">
+                    Paar hinzufügen
+                  </button>
+                <p>Aktuelle Paarungen: {{ getPairingsDisplay(mustNotSitTogether) }}</p>
+            </div>
         </div>
     </section>
 </div>
