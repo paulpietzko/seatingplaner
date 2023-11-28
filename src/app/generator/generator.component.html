@@ -1,7 +1,4 @@
 <div class="generator">
-  <div class="settings-tab">
-    <h2>Settings</h2>
-  </div>
   <div class="layout">
     <div class="class-selection">
       <mat-form-field appearance="fill">
@@ -13,16 +10,17 @@
         </mat-select>
       </mat-form-field>
     </div>
-  
+
     <h3>Zimmerstruktur</h3>
     <div class="classroom-layout">
       <div *ngFor="let row of seats; let rowIndex = index" class="row">
-        <div *ngFor="let seat of row; let colIndex = index" class="seat" (click)="assignStudentToSeat(rowIndex, colIndex)">
+        <div *ngFor="let seat of row; let colIndex = index" class="seat"
+          (click)="assignStudentToSeat(rowIndex, colIndex)">
           {{ seat?.shortName }}{{ seat?.numberSuffix }}
         </div>
       </div>
     </div>
-  
+
     <div class="student-list">
       <h3>Schülerliste</h3>
       <ul>
@@ -32,4 +30,5 @@
       </ul>
     </div>
   </div>
+  <app-settings></app-settings>
 </div>

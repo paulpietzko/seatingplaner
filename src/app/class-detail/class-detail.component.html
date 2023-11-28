@@ -5,7 +5,6 @@
 <div *ngIf="classDetails; else noClassDetails">
     <h2>{{ classDetails.name }}</h2>
     <p>Anzahl Schüler: {{ classDetails.studentsCount }}</p>
-    <p>Erstellungsdatum: {{ classDetails.creationDate | date }}</p>
 
     <mat-form-field appearance="fill" class="student-add-form">
         <mat-label>Neuen Schüler hinzufügen</mat-label>

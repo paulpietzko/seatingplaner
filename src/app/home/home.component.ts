@@ -15,7 +15,7 @@ export class HomeComponent {
   classes$ = this.classService.getClasses().pipe(
     map((classes: Class[] | null) => classes ?? []) // '??', um 'null' in ein leeres Array zu konvertieren
   );
-  columnsToDisplay = ['number', 'name', 'studentsCount', 'creationDate'];
+  columnsToDisplay = ['number', 'name', 'studentsCount'];
 
   constructor(private classService: ClassService, private router: Router) {}
 

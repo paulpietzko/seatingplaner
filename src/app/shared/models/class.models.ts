@@ -9,6 +9,5 @@ export interface Class {
   id: string;
   name: string;
   studentsCount: number;
-  creationDate: Date;
   students: Student[];
 }

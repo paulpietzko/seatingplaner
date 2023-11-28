@@ -12,7 +12,6 @@ export class ClassService {
       map(action => {
         const data = action.payload.data() as Class;
         const id = action.payload.id;
-        // Entfernen der `id` aus `data`, falls vorhanden
         const { id: dataId, ...rest } = data; 
         return { id, ...rest };
       })
@@ -28,7 +27,6 @@ export class ClassService {
     return this.firestore.collection('classes').add({
       ...newClass,
       studentsCount: 0,
-      creationDate: new Date(),
       students: []
     });
   }
