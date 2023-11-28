@@ -12,13 +12,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class GeneratorComponent implements OnInit {
   rows: number = 6;
   cols: number = 10;
-  seats: (Student | null)[][]; // 2 Dimensionales Array
+  seats: (Student | null)[][]; // 2 Dimensionales Array für Sitze
   selectedClassId: string | null = null;
   selectedClass: Class | null = null;
   classes: Class[] = [];
 
   constructor(private snackBar: MatSnackBar, private classService: ClassService) {
-    this.seats = Array.from({ length: this.rows }, () =>
+    this.seats = Array.from({ length: this.rows }, () => // Initialisiert Sitzplätze
       Array.from({ length: this.cols }, () => null)
     );
   }
@@ -50,6 +50,7 @@ export class GeneratorComponent implements OnInit {
   prepareDisplayNames(): void {
     if (!this.selectedClass) return;
 
+    // wie oft kommt ein bestimmter gekürzter Name vor
     const nameCount = new Map<string, number>(); // Datenstruktur, die Schlüssel-Wert-Paare speichert
 
     this.selectedClass.students.forEach(student => {
@@ -57,14 +58,14 @@ export class GeneratorComponent implements OnInit {
       let count = nameCount.get(shortName) || 0;
 
       student.shortName = shortName;
-      student.numberSuffix = count > 0 ? `(${count + 1})` : '';
+      student.numberSuffix = count > 0 ? `(${count + 1})` : ''; // Suffix für Duplikate
 
-      nameCount.set(shortName, count + 1);
+      nameCount.set(shortName, count + 1); // Aktualisiert Zählung in Map um +1
     });
   }
 
   assignStudentToSeat(row: number, col: number): void {
-    const availableStudents = this.selectedClass?.students.filter(
+    const availableStudents = this.selectedClass?.students.filter( // Filtert Schüler, die noch nicht Seats zugeteilt wurden
       (student) => !this.seats.flat().includes(student) // Verschachtelte Ebenen des Arrays werden entfernt
     ) || [];
 
@@ -75,7 +76,7 @@ export class GeneratorComponent implements OnInit {
       return;
     }
 
-    const randomIndex = Math.floor(Math.random() * availableStudents.length);
+    const randomIndex = Math.floor(Math.random() * availableStudents.length); // Zufälliger Schüler
     const student = availableStudents[randomIndex];
 
     this.seats[row][col] = student;

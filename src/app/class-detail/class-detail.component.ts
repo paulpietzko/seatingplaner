@@ -21,16 +21,16 @@ export class ClassDetailComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    const classId = this.route.snapshot.paramMap.get('id');
+    const classId = this.route.snapshot.paramMap.get('id'); // Holt Klassen-ID aus Route
     if (classId) {
-      this.classService.getClassById(classId).subscribe(
+      this.classService.getClassById(classId).subscribe( // Abonniert Klassendetails
         details => {
           if (details) {
             if (!details.students) {
-              details.students = [];
+              details.students = []; // Initialisiert Schülerliste
               this.classService.updateClass(details);
             }
-            this.classDetails = details;
+            this.classDetails = details; // Setzt Klassendetails
           }
         }
       );
@@ -38,7 +38,7 @@ export class ClassDetailComponent implements OnInit {
   }
 
   addStudent() {
-    if (this.newStudentName.trim() && this.classDetails) {
+    if (this.newStudentName.trim() && this.classDetails) { // Überprüft Schülername Gültigkeit
       const newStudent: Student = {
         id: Date.now(),
         name: this.newStudentName
@@ -52,7 +52,7 @@ export class ClassDetailComponent implements OnInit {
 
   removeStudent(index: number) {
     if (this.classDetails) {
-      this.classDetails.students.splice(index, 1);
+      this.classDetails.students.splice(index, 1); // Entferne Schüler an Index
       this.classDetails.studentsCount = this.classDetails.students.length;
       this.classService.updateClass(this.classDetails);
     }

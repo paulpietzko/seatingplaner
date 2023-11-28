@@ -12,21 +12,21 @@ import { Router } from '@angular/router';
 
 export class HomeComponent {
   newClassName = '';
-  classes$ = this.classService.getClasses().pipe(
+  classes$ = this.classService.getClasses().pipe( // Ruft Klassen ab und verarbeitet Daten
     map((classes: Class[] | null) => classes ?? []) // '??', um 'null' in ein leeres Array zu konvertieren
   );
   columnsToDisplay = ['number', 'name', 'studentsCount'];
 
-  constructor(private classService: ClassService, private router: Router) {}
+  constructor(private classService: ClassService, private router: Router) { }
 
   goToClassDetail(classId: string) {
     this.router.navigate(['/class-detail', classId]);
   }
 
   createClass() {
-    if (this.newClassName.trim() === '') return;
+    if (this.newClassName.trim() === '') return; // Prüft, ob Name leer ist.
 
-    this.classService.addClass({ name: this.newClassName }).then(() => {
+    this.classService.addClass({ name: this.newClassName }).then(() => { // Fügt Klasse hinzu, behandelt Asynchron erwarteten Erfolg
       console.log('Klasse wurde erstellt');
       this.newClassName = '';
     }).catch(error => {
