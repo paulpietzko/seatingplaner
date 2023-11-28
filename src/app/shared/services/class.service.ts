@@ -11,8 +11,8 @@ export class ClassService {
     return this.firestore
       .collection('classes') // Greift auf Collection "classes" zu
       .doc(classId) // Wählt spezifisches Dokument aus Sammlung
-      .snapshotChanges()
-      .pipe(
+      .snapshotChanges() // Gibt Observable zurück
+      .pipe( // Ermöglicht Verkettung von Observationsoperatoren
         map(action => { // Transformiert Snapshot 
           const data = action.payload.data() as Class; // Speichert Daten als Class
           const id = action.payload.id;
@@ -40,7 +40,7 @@ export class ClassService {
       map(actions => actions.map(a => {
         const data = a.payload.doc.data() as Class;
         const id = a.payload.doc.id;
-        const { id: _, ...rest } = data; // "_" wird ignoriert
+        const { id: _, ...rest } = data; // Umbennenung der ID - kann also ignoriert werden
         return { id, ...rest };
       }))
     );

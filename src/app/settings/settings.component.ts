@@ -13,7 +13,7 @@ export class SettingsComponent {
   mustSitTogether: [Student, Student][] = [];
   mustNotSitTogether: [Student, Student][] = [];
 
-  @Input() students: Student[] = [];
+  @Input() students: Student[] = []; // Bekommt Student Array vom Generator HTML
 
   selectedStudentOneId: string | undefined;
   selectedStudentTwoId: string | undefined;
@@ -22,7 +22,6 @@ export class SettingsComponent {
 
   constructor(private snackBar: MatSnackBar) { }
 
-  // Methods to toggle the visibility of each section
   togglePairings() {
     this.isPairingsOpen = !this.isPairingsOpen;
   }
@@ -33,10 +32,9 @@ export class SettingsComponent {
 
   handlePairSelection(studentOneId?: string, studentTwoId?: string, isMustSitTogether?: boolean) {
     if (!studentOneId || !studentTwoId || isMustSitTogether === undefined) {
-      this.snackBar.open('Bitte wählen Sie zwei Schüler aus und geben Sie an, ob sie zusammensitzen müssen oder nicht.', 'Schließen', { duration: 3000 });
+      this.snackBar.open('Bitte wählen Sie zwei Schüler aus und geben Sie an, ob sie zusammensitzen müssen oder nicht.', 'Schliessen', { duration: 3000 });
       return;
     }
-
 
     const studentOne = this.students.find(s => s.id.toString() === studentOneId);
     const studentTwo = this.students.find(s => s.id.toString() === studentTwoId);
@@ -44,13 +42,13 @@ export class SettingsComponent {
     if (studentOne && studentTwo) {
       this.addPair(isMustSitTogether ? this.mustSitTogether : this.mustNotSitTogether, studentOne, studentTwo, isMustSitTogether);
     } else {
-      this.snackBar.open('Schüler nicht gefunden.', 'Schließen', { duration: 3000 });
+      this.snackBar.open('Schüler nicht gefunden.', 'Schliessen', { duration: 3000 });
     }
   }
 
   addPair(pairArray: [Student, Student][], studentOne: Student, studentTwo: Student, isMustSitTogether: boolean) {
     const oppositeArray = isMustSitTogether ? this.mustNotSitTogether : this.mustSitTogether;
-    const isPairInOppositeArray = oppositeArray.some(pair =>
+    const isPairInOppositeArray = oppositeArray.some(pair => // Stellt fest ob mindestens ein Element Bedingungen erfüllt
       (pair[0] === studentOne && pair[1] === studentTwo) ||
       (pair[0] === studentTwo && pair[1] === studentOne)
     );
