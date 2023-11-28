@@ -27,16 +27,14 @@ export class GeneratorComponent implements OnInit {
   loadStudents() {
     this.classService.getClasses().subscribe(classes => {
       if (classes.length > 0) {
-        this.students = classes[0].students; // Now 'students' is a declared property
-        // Handle class selection logic as needed
+        this.students = classes[0].students;
       } else {
-        this.students = []; // Ensure students is an empty array if no classes are found
+        this.students = [];
         this.snackBar.open('Keine Klassen gefunden.', 'Schließen', {
           duration: 3000,
         });
       }
     }, error => {
-      // Handle potential error here
       this.snackBar.open('Fehler beim Laden der Klassen.', 'Schließen', {
         duration: 3000,
       });
@@ -72,7 +70,7 @@ export class GeneratorComponent implements OnInit {
     if (!this.selectedClass) return;
 
     // wie oft kommt ein bestimmter gekürzter Name vor
-    const nameCount = new Map<string, number>(); // Datenstruktur, die Schlüssel-Wert-Paare speichert
+    const nameCount = new Map<string, number>(); // Datenstruktur, mit Schlüssel-Wert-Paaren
 
     this.selectedClass.students.forEach(student => {
       const shortName = student.name.slice(0, 3).toUpperCase();

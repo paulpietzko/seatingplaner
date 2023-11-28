@@ -12,7 +12,7 @@ export class SettingsComponent {
   isAntiPairingsOpen: boolean = false;
   mustSitTogether: [Student, Student][] = [];
   mustNotSitTogether: [Student, Student][] = [];
-  
+
   @Input() students: Student[] = [];
 
   selectedStudentOneId: string | undefined;
@@ -36,7 +36,7 @@ export class SettingsComponent {
       this.snackBar.open('Bitte wählen Sie zwei Schüler aus und geben Sie an, ob sie zusammensitzen müssen oder nicht.', 'Schließen', { duration: 3000 });
       return;
     }
-  
+
 
     const studentOne = this.students.find(s => s.id.toString() === studentOneId);
     const studentTwo = this.students.find(s => s.id.toString() === studentTwoId);
