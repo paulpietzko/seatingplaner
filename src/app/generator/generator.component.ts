@@ -17,6 +17,7 @@ export class GeneratorComponent implements OnInit {
   selectedClass: Class | null = null;
   classes: Class[] = [];
   students: Student[] = [];
+  mustSitTogether: [Student, Student][] = [];
 
   constructor(private snackBar: MatSnackBar, private classService: ClassService ) {
     this.seats = Array.from({ length: this.rows }, () => // Initialisiert Sitzplätze
@@ -97,7 +98,25 @@ export class GeneratorComponent implements OnInit {
 
     const randomIndex = Math.floor(Math.random() * availableStudents.length); // Zufälliger Schüler
     const student = availableStudents[randomIndex];
+    const pair = this.mustSitTogether.find((pair: [Student, Student]) => pair[0] === student || pair[1] === student);
 
+    if (pair) {
+      const partner = pair[0] === student ? pair[1] : pair[0];
+  
+      // Versuchen, den Partner links oder rechts zu platzieren
+      if (col > 0 && this.seats[row][col - 1] === null) {
+        this.seats[row][col - 1] = partner;
+      } else if (col < this.cols - 1 && this.seats[row][col + 1] === null) {
+        this.seats[row][col + 1] = partner;
+      } else {
+        // Wenn kein Platz vorhanden, normale Zuweisung durchführen
+        this.snackBar.open('Kein Platz für das Paar neben einander.', 'X', {
+          duration: 4000,
+        });
+      }
+    }
+  
+    // Platzieren des ursprünglichen Schülers
     this.seats[row][col] = student;
   }
 
