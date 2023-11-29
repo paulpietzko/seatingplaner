@@ -31,7 +31,7 @@ export class GeneratorComponent implements OnInit {
   }
 
   loadStudents() {
-    this.classService.getClasses().subscribe(classes => {
+    this.classService.getClasses().subscribe(classes => {  // Wird als veraltet oder nicht best practice angesehen | Verbesserung: destroy$
       if (classes.length > 0) {
         this.students = classes[0].students;
       } else {

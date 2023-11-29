@@ -40,7 +40,7 @@ export class ClassService {
       map(actions => actions.map(a => {
         const data = a.payload.doc.data() as Class;
         const id = a.payload.doc.id;
-        const { id: _, ...rest } = data; // Umbennenung der ID - kann also ignoriert werden
+        const { id: _, ...rest } = data; // Umbennenung der ID, "_" kann also ignoriert werden
         return { id, ...rest };
       }))
     );
