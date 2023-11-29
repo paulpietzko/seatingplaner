@@ -16,25 +16,7 @@
                 <button (click)="handlePairSelection(selectedStudentOneId ?? '', selectedStudentTwoId ?? '', true)">
                     Paar hinzufügen
                 </button>
-                <p>Aktuelle Paarungen: {{ getPairingsDisplay(mustSitTogether) }}</p>
-            </div>
-        </div>
-        <div class="tab">
-            <h2 (click)="toggleAntiPairings()">
-                <span class="chevron" [ngClass]="{'rotated': isAntiPairingsOpen}">&#x25BA;</span>
-                Pärchen, die nicht zusammensitzen dürfen
-            </h2>
-            <div class="tab-content" [ngClass]="{'open': isAntiPairingsOpen}">
-                <select [(ngModel)]="selectedStudentOneAntiId">
-                    <option *ngFor="let student of students" [value]="student.id">{{ student.name }}</option>
-                </select>
-                <select [(ngModel)]="selectedStudentTwoAntiId">
-                    <option *ngFor="let student of students" [value]="student.id">{{ student.name }}</option>
-                </select>
-                <button (click)="handlePairSelection(selectedStudentOneAntiId ?? '', selectedStudentTwoAntiId ?? '', false)">
-                    Paar hinzufügen
-                  </button>
-                <p>Aktuelle Paarungen: {{ getPairingsDisplay(mustNotSitTogether) }}</p>
+                <p>Aktuelle Paarungen: {{ getPairingsDisplay() }}</p>
             </div>
         </div>
     </section>

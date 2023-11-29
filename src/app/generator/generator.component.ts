@@ -2,6 +2,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Class, Student } from '../shared/models/class.models';
 import { ClassService } from '../shared/services/class.service';
+import { PairingService } from '../shared/services/PairingService';
 
 @Component({
   selector: 'app-generator',
@@ -19,7 +20,11 @@ export class GeneratorComponent implements OnInit {
   students: Student[] = [];
   mustSitTogether: [Student, Student][] = [];
 
-  constructor(private snackBar: MatSnackBar, private classService: ClassService ) {
+  constructor(
+    private snackBar: MatSnackBar,
+    private classService: ClassService,
+    private pairingService: PairingService
+  ) {
     this.seats = Array.from({ length: this.rows }, () => // Initialisiert Sitzplätze
       Array.from({ length: this.cols }, () => null)
     );
@@ -98,7 +103,8 @@ export class GeneratorComponent implements OnInit {
 
     const randomIndex = Math.floor(Math.random() * availableStudents.length); // Zufälliger Schüler
     const student = availableStudents[randomIndex];
-    const pair = this.mustSitTogether.find((pair: [Student, Student]) => pair[0] === student || pair[1] === student);
+    const mustSitTogetherPairs = this.pairingService.getMustSitTogetherPairs();
+    const pair = mustSitTogetherPairs.find(pair => pair[0] === student || pair[1] === student);
 
     if (pair) {
       const partner = pair[0] === student ? pair[1] : pair[0];

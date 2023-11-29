@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Student } from '../shared/models/class.models';
+import { PairingService } from '../shared/services/PairingService';
 
 @Component({
   selector: 'app-settings',
@@ -20,7 +21,7 @@ export class SettingsComponent {
   selectedStudentOneAntiId: string | undefined;
   selectedStudentTwoAntiId: string | undefined;
 
-  constructor(private snackBar: MatSnackBar) { }
+  constructor(private snackBar: MatSnackBar, private pairingService: PairingService) { }
 
   togglePairings() {
     this.isPairingsOpen = !this.isPairingsOpen;
@@ -40,7 +41,12 @@ export class SettingsComponent {
     const studentTwo = this.students.find(s => s.id.toString() === studentTwoId);
 
     if (studentOne && studentTwo) {
-      this.addPair(isMustSitTogether ? this.mustSitTogether : this.mustNotSitTogether, studentOne, studentTwo, isMustSitTogether);
+      if (isMustSitTogether)
+        this.pairingService.addMustSitTogetherPair(studentOne, studentTwo);
+    }
+
+    if (studentOne && studentTwo && isMustSitTogether) {
+      this.pairingService.addMustSitTogetherPair(studentOne, studentTwo);
     } else {
       this.snackBar.open('Schüler nicht gefunden.', 'Schliessen', { duration: 3000 });
     }
@@ -60,10 +66,12 @@ export class SettingsComponent {
       return;
     }
 
-    pairArray.push([studentOne, studentTwo]);
+    this.pairingService.addMustSitTogetherPair(studentOne, studentTwo);
   }
 
-  getPairingsDisplay(pairings: [Student, Student][]): string {
-    return pairings.map(pair => `${pair[0].name} & ${pair[1].name}`).join(', ');
+  getPairingsDisplay(): string {
+    const mustSitTogetherPairs = this.pairingService.getMustSitTogetherPairs();
+    const formattedMustSitTogether = mustSitTogetherPairs.map(pair => `${pair[0].name} & ${pair[1].name}`).join(', ');
+    return formattedMustSitTogether;
   }
 }
